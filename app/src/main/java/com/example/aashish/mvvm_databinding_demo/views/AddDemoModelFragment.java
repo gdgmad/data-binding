@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.aashish.mvvm_databinding_demo.MainActivity;
 import com.example.aashish.mvvm_databinding_demo.R;
 import com.example.aashish.mvvm_databinding_demo.databinding.FragmentEditModelBinding;
 import com.example.aashish.mvvm_databinding_demo.models.DemoModel;
@@ -49,7 +50,11 @@ public class AddDemoModelFragment extends Fragment {
             public void onEventOccured(int callerId, int eventId, BaseViewModel baseViewModelInstance) {
                 if (callerId == ADD_MODEL_CALLER_ID) {
                     switch (eventId) {
-
+                        case AddModelViewModel.SUBMIT_BTN_CLICKED:
+                            DemoModel demoModel = ((AddModelViewModel) baseViewModelInstance).mBinding.getDemoModel();
+                            ((MainActivity) getActivity()).setData(demoModel);
+                            getActivity().onBackPressed();
+                            break;
                     }
                 }
             }

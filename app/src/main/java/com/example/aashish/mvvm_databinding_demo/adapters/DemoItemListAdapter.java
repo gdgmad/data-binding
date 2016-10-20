@@ -54,6 +54,7 @@ public class DemoItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ((MyViewHolder) holder).binding.setDemoModel(mDemoModels.get(position));
         ((MyViewHolder) holder).binding.setViewModel(new ItemCardViewModel(mContext, LIST_FRAGMENT_CALLER_ID, mOnEventOccuredCallbacks, ((MyViewHolder) holder).binding));
         ((MyViewHolder) holder).binding.executePendingBindings();
     }

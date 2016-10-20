@@ -14,17 +14,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.aashish.mvvm_databinding_demo.databinding.ActivityMainBinding;
+import com.example.aashish.mvvm_databinding_demo.models.DemoModel;
 import com.example.aashish.mvvm_databinding_demo.views.ListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mBinding;
+    private DemoModel mDemoModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        addFragment(ListFragment.instantiate(this, ListFragment.class.getSimpleName()));
+        addFragment(new ListFragment());
     }
 
     public void addFragment(Fragment fragment) {
@@ -44,5 +46,13 @@ public class MainActivity extends AppCompatActivity {
         }
         transaction.replace(mBinding.fragmentContainer.getId(), fragment);
         transaction.commitAllowingStateLoss();
+    }
+
+    public void setData(DemoModel model) {
+        mDemoModel = model;
+    }
+
+    public DemoModel getDemoModel() {
+        return mDemoModel;
     }
 }

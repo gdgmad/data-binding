@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    >
 
     <data>
 
@@ -13,7 +12,7 @@
             name="viewModel"
             type="com.example.aashish.mvvm_databinding_demo.viewModels.AddModelViewModel" />
 
-        <import type="android.R.string"/>
+        <import type="android.R.string" />
     </data>
 
     <ScrollView
@@ -117,9 +116,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:background="@color/colorAccent"
+                android:text="@{demoModel.empty ? @string/add_model : @string/edit_model}"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:text="@{demoModel.empty ? @string/add_model : @string/edit_model}"
+                android:onClick="@{viewModel.onSubmitBtnClickListener}"
                 />
 
         </LinearLayout>

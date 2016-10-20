@@ -1,8 +1,8 @@
 package com.example.aashish.mvvm_databinding_demo.views;
 
-import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +18,7 @@ import com.example.aashish.mvvm_databinding_demo.models.DemoModel;
 import com.example.aashish.mvvm_databinding_demo.viewModels.BaseViewModel;
 import com.example.aashish.mvvm_databinding_demo.viewModels.ItemCardViewModel;
 
-import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,25 +32,49 @@ public class ListFragment extends Fragment {
     private List<DemoModel> mDemoModelList;
     private BaseViewModel.IOnEventOccuredCallbacks mViewModelEventsCallbacks;
 
+    public ListFragment() {
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false);
+
+        mBinding.btnAddModel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAddModelFragment();
+            }
+        });
+
         initViewModelEventCallbacks();
-        setAdapter();
+        mBinding.rvItems.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        mAdapter = new DemoItemListAdapter(getContext(), mDemoModelList, mViewModelEventsCallbacks);
+        mBinding.rvItems.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
-    private void setAdapter() {
+    private void mockData() {
+        mDemoModelList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            DemoModel demoModel = new DemoModel();
+            demoModel.name = "Aashish Totla";
+            demoModel.description = "This is a test description of the mock data";
+            demoModel.age = "22";
+            demoModel.gender = "Male";
+            demoModel.address = "Surya Plaza, UM Road, Surat";
+            mDemoModelList.add(demoModel);
+        }
+    }
+
+    private void setData() {
         if (mDemoModelList == null || mDemoModelList.size() == 0) {
             mBinding.noItemsView.setVisibility(View.VISIBLE);
             mBinding.rvItems.setVisibility(View.GONE);
         } else {
             mBinding.noItemsView.setVisibility(View.GONE);
             mBinding.rvItems.setVisibility(View.VISIBLE);
-            mBinding.rvItems.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-            mAdapter = new DemoItemListAdapter(getContext(), mDemoModelList, mViewModelEventsCallbacks);
-            mBinding.rvItems.setAdapter(mAdapter);
         }
     }
 
@@ -70,10 +94,33 @@ public class ListFragment extends Fragment {
         };
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mockData();
+        if (mDemoModelList == null) {
+            mDemoModelList = new ArrayList<>();
+        }
+        DemoModel demoModel = ((MainActivity) getActivity()).getDemoModel();
+        if (demoModel != null) {
+            mDemoModelList.add(demoModel);
+            if (mAdapter != null) {
+                mAdapter.notifyDataSetChanged();
+            } else {
+                setData();
+            }
+        }
+    }
+
     private void openAddModelFragment(DemoModel model) {
         if (model == null) {
             model = new DemoModel();
         }
+        ((MainActivity) getActivity()).replaceFragment(AddDemoModelFragment.getInstance(model), true);
+    }
+
+    private void openAddModelFragment() {
+        DemoModel model = new DemoModel();
         ((MainActivity) getActivity()).replaceFragment(AddDemoModelFragment.getInstance(model), true);
     }
 }
