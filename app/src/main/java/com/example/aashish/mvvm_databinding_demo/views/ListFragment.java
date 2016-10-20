@@ -60,13 +60,15 @@ public class ListFragment extends Fragment {
         for (int i = 0; i < 5; i++) {
             DemoModel demoModel = new DemoModel();
             demoModel.name = "Aashish Totla";
-            demoModel.description = "This is a test description of the mock data";
+            demoModel.description = "This is a test description of the mock data numbered => " + i;
             demoModel.age = "22";
             demoModel.gender = "Male";
             demoModel.address = "Surya Plaza, UM Road, Surat";
             mDemoModelList.add(demoModel);
         }
         setData();
+        mAdapter.setDemoModels(mDemoModelList);
+        mBinding.executePendingBindings();
     }
 
     private void setData() {
@@ -103,13 +105,13 @@ public class ListFragment extends Fragment {
             mDemoModelList = new ArrayList<>();
         }
         DemoModel demoModel = ((MainActivity) getActivity()).getDemoModel();
-        if (demoModel != null) {
+        if (demoModel != null && !demoModel.isEmpty()) {
+            ((MainActivity) getActivity()).setData(null);
             mDemoModelList.add(demoModel);
             if (mAdapter != null) {
-                mAdapter.notifyDataSetChanged();
-            } else {
-                setData();
+                mAdapter.setDemoModels(mDemoModelList);
             }
+            setData();
         }
     }
 
