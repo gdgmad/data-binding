@@ -66,6 +66,7 @@ public class ListFragment extends Fragment {
             demoModel.address = "Surya Plaza, UM Road, Surat";
             mDemoModelList.add(demoModel);
         }
+        setData();
     }
 
     private void setData() {
