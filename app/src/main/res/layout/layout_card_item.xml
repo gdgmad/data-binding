@@ -34,7 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{viewModel.itemClickListener}"
-                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="@{demoModel.name}"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -45,7 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:onClick="@{viewModel.itemClickListener}"
-                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="@{demoModel.description}"
                 android:textSize="14sp"
                 android:textStyle="italic" />
@@ -56,7 +62,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:onClick="@{viewModel.itemClickListener}"
-                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="@{demoModel.age}"
                 android:textSize="14sp" />
 
@@ -66,8 +75,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:onClick="@{viewModel.itemClickListener}"
-                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="@{demoModel.gender}"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:onClick="@{viewModel.itemClickListener}"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="@{demoModel.address}"
                 android:textSize="14sp" />
         </LinearLayout>
 

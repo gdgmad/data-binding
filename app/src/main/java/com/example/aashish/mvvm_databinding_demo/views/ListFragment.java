@@ -59,11 +59,11 @@ public class ListFragment extends Fragment {
         mDemoModelList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             DemoModel demoModel = new DemoModel();
-            demoModel.name = "Aashish Totla";
+            demoModel.name = "Test Name";
             demoModel.description = "This is a test description of the mock data numbered => " + i;
             demoModel.age = "22";
             demoModel.gender = "Male";
-            demoModel.address = "Surya Plaza, UM Road, Surat";
+            demoModel.address = "This is  test address\nof the mock data\nnumbered " + i + " for\ntesting purposes";
             mDemoModelList.add(demoModel);
         }
         setData();
@@ -100,7 +100,7 @@ public class ListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mockData();
+        //mockData();
         if (mDemoModelList == null) {
             mDemoModelList = new ArrayList<>();
         }
