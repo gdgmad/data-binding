@@ -36,10 +36,6 @@ public class AddDemoModelFragment extends Fragment {
         return addDemoModelFragment;
     }
 
-    public void setDemoModel(DemoModel demoModel) {
-        this.mDemoModel = demoModel;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

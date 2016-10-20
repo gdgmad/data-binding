@@ -2,7 +2,6 @@ package com.example.aashish.mvvm_databinding_demo.views;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -55,22 +54,6 @@ public class ListFragment extends Fragment {
         return mBinding.getRoot();
     }
 
-    private void mockData() {
-        mDemoModelList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            DemoModel demoModel = new DemoModel();
-            demoModel.name = "Test Name";
-            demoModel.description = "This is a test description of the mock data numbered => " + i;
-            demoModel.age = "22";
-            demoModel.gender = "Male";
-            demoModel.address = "This is  test address\nof the mock data\nnumbered " + i + " for\ntesting purposes";
-            mDemoModelList.add(demoModel);
-        }
-        setData();
-        mAdapter.setDemoModels(mDemoModelList);
-        mBinding.executePendingBindings();
-    }
-
     private void setData() {
         if (mDemoModelList == null || mDemoModelList.size() == 0) {
             mBinding.noItemsView.setVisibility(View.VISIBLE);
@@ -115,6 +98,23 @@ public class ListFragment extends Fragment {
         }
     }
 
+    //Utilities methods start
+    private void mockData() {
+        mDemoModelList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            DemoModel demoModel = new DemoModel();
+            demoModel.name = "Test Name";
+            demoModel.description = "This is a test description of the mock data numbered => " + i;
+            demoModel.age = "22";
+            demoModel.gender = "Male";
+            demoModel.address = "This is  test address\nof the mock data\nnumbered " + i + " for\ntesting purposes";
+            mDemoModelList.add(demoModel);
+        }
+        setData();
+        mAdapter.setDemoModels(mDemoModelList);
+        mBinding.executePendingBindings();
+    }
+
     private void openAddModelFragment(DemoModel model) {
         if (model == null) {
             model = new DemoModel();
@@ -126,4 +126,5 @@ public class ListFragment extends Fragment {
         DemoModel model = new DemoModel();
         ((MainActivity) getActivity()).replaceFragment(AddDemoModelFragment.getInstance(model), true);
     }
+    //Utilities methods end
 }
