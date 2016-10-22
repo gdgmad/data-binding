@@ -20,7 +20,6 @@ import com.example.aashish.mvvm_databinding_demo.views.ListFragment;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mBinding;
-    private DemoModel mDemoModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +45,5 @@ public class MainActivity extends AppCompatActivity {
         }
         transaction.replace(mBinding.fragmentContainer.getId(), fragment);
         transaction.commitAllowingStateLoss();
-    }
-
-    public void setData(DemoModel model) {
-        mDemoModel = model;
-    }
-
-    public DemoModel getDemoModel() {
-        return mDemoModel;
     }
 }

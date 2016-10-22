@@ -47,8 +47,6 @@ public class AddDemoModelFragment extends Fragment {
                 if (callerId == ADD_MODEL_CALLER_ID) {
                     switch (eventId) {
                         case AddModelViewModel.SUBMIT_BTN_CLICKED:
-                            DemoModel demoModel = ((AddModelViewModel) baseViewModelInstance).mBinding.getDemoModel();
-                            ((MainActivity) getActivity()).setData(demoModel);
                             getActivity().onBackPressed();
                             break;
                     }
