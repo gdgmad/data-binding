@@ -2,6 +2,8 @@ package com.example.aashish.mvvm_databinding_demo.viewModels;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
@@ -29,5 +31,15 @@ public class BaseViewModel extends BaseObservable {
          * @param baseViewModelInstance Instance of the viewModel to access Model or other public variable
          */
         void onEventOccured(int callerId, int eventId, BaseViewModel baseViewModelInstance);
+    }
+
+    public interface MyTestAdapter {
+
+        @BindingAdapter("android:src")
+        void setImageUrl(ImageView iv, String url);
+    }
+
+    public interface DataBindingComponent {
+        MyTestAdapter getTestAdapter();
     }
 }
